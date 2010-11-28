@@ -1,0 +1,38 @@
+= AttrSanitizer =
+
+Based on rgrove's sanitize gem, simple as possible attribute sanitizer.
+
+== Requires ==
+
+* [[https://github.com/rgrove/sanitize|sanitize]]
+
+== Example ==
+
+assuming that Foo class has title field:
+
+{{
+	class Foo < ActiveRecord::Base
+		atrr_sanitizer :title
+	end
+}}
+
+By default attr_sanitizer calls sanitize_attributes on before_save, but You can
+call it whenever You want.
+
+{{
+	f = Foo.new
+	f.title = "<span>works</span>"
+	f.sanitize_attributes.title 	# => "works"
+}}
+
+
+== Instalation ==
+
+{{
+	script/plugin install attr_sanitizer
+}}
+
+
+
+
+Copyright (c) 2010 pasierb, released under the MIT license
